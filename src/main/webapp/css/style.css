@@ -1,0 +1,17 @@
+body {
+ background-image: url("AppData/images/hmbg.jpg");
+ background-color: #cccccc;
+}
+
+.mheding {
+  font-family: Rockwell Extra Bold;
+  color:white;
+  font-weight: bold;
+}
+
+.startDiv{
+	margin-top: 15%;
+}
+
+
+
