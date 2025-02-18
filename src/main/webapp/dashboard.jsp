@@ -5,7 +5,7 @@
 <%
 	int custId = session.getAttribute("custId") != null ? (int) session.getAttribute("custId") : 0;
 	int custCount = CustomerDaoImpl.getInstance().customerCount();
-	int approveCount = CustomerDaoImpl.getInstance().customerApproveCount();
+	int approvCount = CustomerDaoImpl.getInstance().customerApproveCount();
 	
 %>
 <!DOCTYPE html>
@@ -18,12 +18,16 @@
    <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="chartjs/bootstrap-card-bootstrap.min.css">
-  <script src="chartjs/Chart.min.js"></script>
-  <script src="chartjs/jquery.slim.min.js"></script>
-  <script src="chartjs/popper.min.js"></script>
-  <script src="chartjs/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   
   
 </head>
@@ -70,36 +74,61 @@ if (custId > 0) {
 			
 			<div class="col-md-3">
 				<div class="card text-white shadow-lg" >
-					<div class="card-header" style="text-align: center; background-color: #f14a46"><h4>Customer Approve</h4></div>
+					<div class="card-header" style="text-align: center; background-color: #f14a46"><h4>Customer Approv Count</h4></div>
 					<div class="card-body">							
 						<span class="glyphicon glyphicon-th" style="color: #f14a46;font-size: 22px;">
 						</span>
-						<span class="topright" style="color: #f14a46;" ><%=approveCount %></span>
+						<span class="topright" style="color: #f14a46;" ><%=approvCount %></span>
+					</div>
+				</div>	
+			</div>
+			<!--
+			<div class="col-md-3">
+				<div class="card text-white shadow-lg" >
+					<div class="card-header" style="text-align: center; background-color: #54B4D3"><h4>Test</h4></div>
+					<div class="card-body">							
+						<span class="glyphicon glyphicon-th" style="color: #54B4D3;font-size: 22px;">
+						</span>
+						<span class="topright" >85</span>
 					</div>
 				</div>	
 			</div>
 			
 			<div class="col-md-3">
-				<div class="card text-white shadow-lg" >
-					<div class="card-header" style="text-align: center; background-color: #f14a46"><h4>Account Balance</h4></div>
+				<div class="card text-white shadow-lg">
+					<div class="card-header" style="text-align: center; background-color: #54B4D3"><h4>Test</h4></div>
 					<div class="card-body">							
-						<span class="glyphicon glyphicon-th" style="color: #f14a46;font-size: 22px;">
+						<span class="glyphicon glyphicon-th" style="color: #54B4D3;font-size: 22px;">
 						</span>
-						<span class="topright" style="color: #f14a46;">00000</span>
+						<span class="topright" >89</span>
 					</div>
 				</div>	
-			</div>
+			</div>	
+		</div>						
 			
+		<div class="panel-body" style="padding: 30px">			
 			<div class="col-md-3">
 				<div class="card text-white shadow-lg" >
-					<div class="card-header" style="text-align: center; background-color: #f14a46"><h4>Deposit</h4></div>
+					<div class="card-header" style="text-align: center; background-color: #54B4D3"><h4>Test</h4></div>
 					<div class="card-body">							
-						<span class="glyphicon glyphicon-th" style="color: #f14a46;font-size: 22px;">
+						<span class="glyphicon glyphicon-th" style="color: #54B4D3;font-size: 22px;">
 						</span>
-						<span class="topright" style="color: #f14a46;" >00000</span>
+						<span class="topright" >79</span>
 					</div>
 				</div>	
 			</div>
+		 
+			<div class="col-md-3">
+				<div class="card text-white shadow-lg" >
+					<div class="card-header" style="text-align: center; background-color: #54B4D3"><h4>Test</h4></div>
+					<div class="card-body">							
+						<span class="glyphicon glyphicon-th" style="color: #54B4D3;font-size: 22px;">
+						</span>
+						<span class="topright" ><button type="submit" class="btn btn-info" >Reset</button></span>
+					</div>
+				</div>	
+			</div>
+			 -->
 		</div>
 	</div>
 </div>

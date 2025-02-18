@@ -65,7 +65,7 @@
 	    </div>
 	   
 	    <button type="button" style="background-color:#f14a46;color: white;" id="calculate" class="btn" onclick="emiCalculator();this.disabled=true;">Calculate</button>
-	    <button type="reset" style="background-color:#f14a46;color: white;margin-left: 1rem;" id="reset" class="btn" onclick="resetFun();">Reset</button>
+	    <button type="reset" style="background-color:#f14a46;color: white;margin-left: 9rem;" id="reset" class="btn" onclick="resetFun();">Reset</button>
 	    
 	    </div>
 	</form>
@@ -158,17 +158,9 @@
 		tbl.setAttribute("class", "table table-bordered");
 		document.body.appendChild(tbl);
 		
-		var thead = document.createElement("THEAD");
-		thead.setAttribute("id", "myThead");
-		document.getElementById("myTable").appendChild(thead);
-		
 		var tr = document.createElement("TR");
 		tr.setAttribute("id", "myTh");
-		document.getElementById("myThead").appendChild(tr);
-		
-		var tbody = document.createElement("TBODY");
-		tbody.setAttribute("id", "myTbody");
-		document.getElementById("myTable").appendChild(tbody);
+		document.getElementById("myTable").appendChild(tr);
 		
 		var th = document.createElement("TH");
 		var NoOfMonth = document.createTextNode("No Of Month");
@@ -200,7 +192,7 @@
 			
 			 var tr = document.createElement("TR");
 			 tr.setAttribute("id", "myTr_"+t);
-			 document.getElementById("myTbody").appendChild(tr);
+			 document.getElementById("myTable").appendChild(tr);
 			 th.appendChild(NoOfMonth);
 			 var td = document.createElement("TD");
 				 var NoOfManth = document.createTextNode(t +1 );

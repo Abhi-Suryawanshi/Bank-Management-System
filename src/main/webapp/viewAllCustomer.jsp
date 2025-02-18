@@ -46,6 +46,14 @@ function sendCustomerIdToCustomerDelete(custId) {
 	}
 }
 
+function approveCustomer(custId) {
+	document.getElementById("custId").value=custId;	
+	document.getElementById("docmd").value="approveCustomerRequest";
+	var frm = document.getElementById('sendIdToCustControllerForm').action ="CustomerController"
+	if (confirm("Do you want to approve Customer.!!")) {
+		document.getElementById("sendIdToCustControllerForm").submit();
+	}
+}
 
 </script>
 <body>
@@ -55,7 +63,7 @@ function sendCustomerIdToCustomerDelete(custId) {
 	<input type="hidden" name="nextPage" id="nextPage" value="">
 </form>
 
-<div class="well" style="font-weight: bold;"><h4 style="color: #f14a46;">VIEW ALL CUSTOMER</h4></div>
+<div class="well" style="font-weight: bold;"><h4 style="color: #f14a46;">VIEW ALL CUSTOMER REQUEST</h4></div>
 
 	<table class="table table-bordered">
     <thead>
@@ -84,13 +92,17 @@ function sendCustomerIdToCustomerDelete(custId) {
         <td><%= custEntity.getEmail() %></td>
         <td><%= custEntity.getContact() %></td>
         <td><%= custEntity.getAddress() %></td>
-        <td class="text-center">
-        	
-        	<button type="button" class="btn btn-success"
+        <td>
+        	<%if(custEntity.getCustomN1()>0){ %>
+        	<button type="button" class="btn btn-info"
         	onclick="sendCustomerIdToCustomerUpdate('<%=custEntity.getCustId() %>')">Update</button>
        		<button type="button" class="btn btn-danger" 
         	onclick="sendCustomerIdToCustomerDelete('<%=custEntity.getCustId()%>')">Delete</button>
-        	
+        	<%}else{ %>
+        	<button type="button" class="btn btn-warning" 
+        	onclick="approveCustomer('<%=custEntity.getCustId()%>')">Approve</button>
+        	<%} %>
+        </td>
       </tr>
       <%
     	  }

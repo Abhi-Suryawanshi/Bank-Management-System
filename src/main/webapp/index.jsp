@@ -1,5 +1,3 @@
-<%@page import="com.bankingsystem.daoimpl.CustomerDaoImpl"%>
-<%@page import="com.bankingsystem.entity.CustomerEntity"%>
 <%@page import="java.util.function.Function"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.time.Period"%>
@@ -10,9 +8,6 @@
 	String successMsg = (String)request.getAttribute("success");
 	String errorMsg = (String)request.getAttribute("error");
 	
-	int custId =   session.getAttribute("custId") != null ? (int) session.getAttribute("custId") : 0;
-	CustomerEntity custEntity = CustomerDaoImpl.getInstance().findByCustId(custId);
-	
 %>
 
 <html>
@@ -20,7 +15,7 @@
   <title>Welcome</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 </head>
@@ -50,14 +45,6 @@ body{
 .slogan{
 	font-weight: bold;
 	color: #DC4C64;
-}
-
-.navbarhov{
-	color: white;
-}
-
-.navbarhov:hover{
-	color: #f14a46 ;
 }
 
 .footer {
@@ -97,31 +84,7 @@ body{
 	    }
 	  }
 	
-
-	function showPwd() {
-		
-		var x = document.getElementById("pwd");
-	  		if (x.type === "password") {
-	    	x.type = "text";
-	  	} else {
-	    	x.type = "password";
-			}
-	  }
 	
-	function showForgotPassword() {
-		
-		var x = document.getElementById("fpassword");
-		var y = document.getElementById("cpassword");
-	  		if (x.type === "password" || y.type === "password") {
-	  			x.type = "text";
-		    	y.type = "text";	
-	  	} else {
-	    	
-	    	x.type = "password";
-	    	y.type = "password";
-			}
-	  }
-
 	function register(){
 		var name = document.getElementById("name").value;
 		var contact = document.getElementById("contact").value;
@@ -159,136 +122,26 @@ body{
 		}
 		if(isValid){
 			document.getElementById("registerForm").submit();
-			
 		}
 	}
 	
-	function forgotPwd() {
-		var isValid = true;
-		var uEmail = document.getElementById("uEmail").value;
-		if(uEmail == ""){
-			isValid = false;
-			alert("Please enter valid data to proceed.");
-			document.getElementById("uEmail").style.backgroundColor = "#f0ebc7";
-		}
-		if(isValid){
-			document.getElementById("forgotPwdForm").submit();
-		}
-	}
 	
-	function matchPassword(){
-		var pass = document.getElementById("password").value;
-		var cpass = document.getElementById("cpassword").value;
-		var isValid = true;
-		
-		if(pass!=cpass)
-			{
-			alert("password not matching");
-			document.getElementById("pass").style.backgroundColor = "#f0ebc7";
-			document.getElementById("cpass").style.backgroundColor = "#f0ebc7";
-			}
-		if(isValid)
-			{
-			alert("password is updated successfully");
-			document.getElementById("updatePwdForm").submit();
-			}
-	}
-	
-
-	$(function(){
-		$("#sendOTPBtn").click(
-			function(){
-				var userName = $("#userName").val();
-				$.ajax({
-					type:'post',
-					url: 'AjaxController',
-					dataType: 'json',
-					data:{uname: userName,docmd:'sendOTP'},
-					success:function(jsonResponse){
-						if(jsonResponse>0){
-							alert("OTP Sent on your Email.");
-							//here in jsonResponse we received custId
-							$('#custId').val(jsonResponse);
-							document.getElementById("sendOTPDiv").style.display = 'none';
-							document.getElementById("verifyOTPDiv").style.display = 'block';
-							
-						}else{
-							document.getElementById("sendOTPDiv").style.display = 'block';
-						}
-					}
-				})
-			}	
-		)
-	})
-	
-	$(function(){
-		$("#verifyOTPBtn").click(
-			function(){
-				var otp = $("#otp").val();
-				var custId = $("#custId").val();
-				$.ajax({
-					type:'post',
-					url: 'AjaxController',
-					dataType: 'json',
-					data:{otp: otp,docmd:'verifyOTP',custId:custId},
-					success:function(jsonResponse){
-						alert(jsonResponse);
-						if(jsonResponse.includes("Verified Successfully")){
-							document.getElementById("verifyOTPDiv").style.display = 'none';
-							document.getElementById("updatePwdDiv").style.display = 'block';
-						}else{
-							$('#otp').val('');
-							document.getElementById("verifyOTPDiv").style.display = 'block';
-						}
-					}
-				})
-			}	
-		)
-	})
-	
-	$(function(){
-		$("#updatePWDBtn").click(function(){
-				var pwd = $("#fpassword").val();
-				var cpwd = $("#cpassword").val();
-				var custId = $("#custId").val();
-				if(pwd==cpwd){
-					$.ajax({
-						type:'post',
-						url: 'AjaxController',
-						dataType: 'json',
-						data:{password: cpwd,docmd:'updatePwdForm',custId:custId},
-						success:function(jsonResponse){
-							alert(jsonResponse);
-						}
-					})
-				}else{
-					alert("Password does not match please try again.");
-				}
-			}	
-		)
-	})
-	
-	function defaultSetting(){
-        document.getElementById("verifyOTPDiv").style.display = 'none';
-        document.getElementById("updatePwdDiv").style.display = 'none';
-    }
-	
-	setInterval(function(){ $(".alert").fadeOut(); }, 3000);
 </script>
 <body>
-<nav class="navbar" style="background-color: #f14a46 ">
+<nav class="navbar" style="background-color: #dbd9de;">
   <div class="container-fluid">
     <div class="navbar-header" >
-      <a class="navbar-brand " href="#" style="color: white;">Online Banking</a>
+      <a class="navbar-brand" href="#" >Online Banking</a>
     </div>
-    <ul class="nav navbar-nav topright" style="color: white;">
-      <li><a class="navbarhov" href="#" data-toggle="modal" data-target="#myModal">Register</a></li>
-      <li><a class="navbarhov" href="#">Services</a></li>
-      <li><a class="navbarhov" href="#">Policies</a></li>
+    <ul class="nav navbar-nav topright" style="color: black;">
+      <li><a href="#" data-toggle="modal" data-target="#myModal">Register</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Policies</a></li>
+      <li><a href="#">Logout</a></li>
     </ul>
   </div>
 </nav>
-<div id="warningMsgDiv">
+
 <%if(successMsg != null){%>
 	<div class="alert alert-success" style="width: 50%;margin-left: 25%;">
 	  <strong>Success!</strong> <%=successMsg %>
@@ -304,7 +157,7 @@ body{
 <%
 }
 %>
-</div>
+
 <!-- START LOGIN MODEL -->
 <div class="col-md-4" style="margin-top: 17%;margin-left:2%;background-color: white;padding: 10px;">
 <form action="CustomerController" method="post" name="loginForm" id="loginForm">
@@ -320,7 +173,7 @@ body{
     <input type="checkbox" onclick="showPassword()">Show Password
   </div>
   <div class="checkbox">
-   <a href="#" data-toggle="modal" style="color: #f14a46;" data-target="#myModalForgot"> Forgot Password ?</a>
+   <a href="#" data-toggle="modal" data-target="#myModalForgot"> Forgot Password?</a>
   </div>
   <button type="button" class="btn " style="background-color: #f14a46;color: white;" onclick="login()">Submit</button>
 </form>
@@ -380,43 +233,16 @@ body{
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Forgot Password<span style="color: red;">*</span></h4>
+        <h4 class="modal-title">Forgot Password</h4>
       </div>
       <div class="modal-body">
-        	<form name="forgotPasswordForm" id="forgotPasswordForm" action="AjaxController" method="post"></form>
-        	<input type="hidden" id="custId" name="custId" value="">
-        	<!--Forgot Password and send otp to customV2  -->
-        	<div id="sendOTPDiv">
-        		 <div class="form-group">
-				    <label for="uname">User Mail <span style="color: red;">*</span></label>
-				    <input type="text" class="form-control" id="userName" name="userName">
-				  </div>
-			 	 <button type="button" id="sendOTPBtn" class="btn btn-info">Send OTP</button>
-			</div>  
-			 <!-- verify otp with customv2 -->
-			 <div id="verifyOTPDiv"> 
-			 	<input type="hidden" name="docmd" value="verifyOTP">
-				 <input type="hidden" id="custId" name="custId" value="">
-				  <div class="form-group">
-				    <label for="otp">Enter OTP<span style="color: red;">*</span></label>
-				    <input type="text" class="form-control" id="otp" name="otp">
-				  </div>
-				  <button type="button" class="btn btn-info" id="verifyOTPBtn">Verify</button>
-			</div> 
-			 
-			 <!-- otp verified and now password == confirm password -->
-			 <div id="updatePwdDiv">
-			  	  <div class="form-group">
-				    <label for="fpassword">Password <span style="color: red;">*</span></label>
-				    <input type="password" class="form-control" id="fpassword" name="fpassword">
-				  </div>
-				   <div class="form-group">
-				    <label for="cpassword">Confirm Password<span style="color: red;">*</span></label>
-				    <input type="password" class="form-control" id="cpassword" name="cpassword">
-				    <input type="checkbox" onclick="showForgotPassword()">Show Password
-				  </div>
-				  <button type="submit" id="updatePWDBtn" class="btn btn-info">Update Password</button>
-			</div>
+        	<form action="#" name="forgotPwdForm" id="forgotPwdForm" method="post">
+			  <div class="form-group">
+			    <label for="email">User name <span style="color: red;">*</span></label>
+			    <input type="email" class="form-control" id="uname" name="uname">
+			  </div>
+			  <button type="button" class="btn" style="background-color: #f14a46;color: white;" onclick="forgotPwd()">Submit</button>
+			</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" style="background-color: #f14a46;color: white;" data-dismiss="modal">Close</button>

@@ -2,7 +2,6 @@
     <wb-module deploy-name="BankingSystem">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <wb-resource deploy-path="/WEB-INF/classes/" source-path="/src/main/ImportedClasses"/>
         <property name="context-root" value="BankingSystem"/>
         <property name="java-output-path" value="/BankingSystem/build/classes"/>
     </wb-module>

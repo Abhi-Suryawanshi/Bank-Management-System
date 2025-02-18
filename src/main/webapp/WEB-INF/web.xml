@@ -3,15 +3,6 @@
   <display-name>BankingSystem</display-name>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
+  
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>CustomerAccountController</display-name>
-    <servlet-name>CustomerAccountController</servlet-name>
-    <servlet-class>com.bankingsystem.controller.CustomerController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CustomerAccountController</servlet-name>
-    <url-pattern>/CustomerAccountController</url-pattern>
-  </servlet-mapping>
 </web-app>

@@ -1,10 +1,7 @@
-<%@page import="com.bankingsystem.daoimpl.CustomerDaoImpl"%>
-<%@page import="com.bankingsystem.entity.CustomerEntity"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%
 	int custId = session.getAttribute("custId") != null ? (int) session.getAttribute("custId") : 0;
-	CustomerEntity custEntity = CustomerDaoImpl.getInstance().findByCustId(custId);
 %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +13,6 @@
  <link rel="stylesheet" href="css/bootstrap.min.css">
  <script src="js/jquery.min.js"></script>
  <script src="js/bootstrap.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 <style>
 
@@ -101,6 +97,7 @@ body {
     }
     
     function logOut(){
+    	alert("===");
     	document.getElementById("logOutFrom").submit();	
     }
 
@@ -120,17 +117,16 @@ body {
     <div id="navbar" style="margin-bottom: 0px;" >
       <ul class="nav navbar-nav navbar-right">
         <li>
-        	<a href="javascript:logOut()" style="background-color:white;color: #f14a46;font-size: 18px;" class=" navbarhov btn">
+        	<a href="javascript:logOut()" style="color:white;">
         		Logout
         	</a>
         </li>
       </ul>
-      	
-      	<p class="navbar-form navbar-right " style="color: white;font-size: 20px;margin-top: 12px;"><span class="glyphicon glyphicon-user"></span> Logged User : <%=custEntity.getName() %></p>
-      	
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" style="color:#f14a46; " placeholder="Search...">
+      </form>
     </div>
-  </div>    
-    
+  </div>
 </nav>
 <!--msb: main sidebar-->
 <div class="msb" id="msb">
@@ -141,7 +137,7 @@ body {
 				<!-- Brand -->
 				<div class="brand-name-wrapper">
 					<a class="navbar-brand1" href="#">
-						<img src="AppData/images/bankLogo.png" height="50px" width="200px">
+						<img src="AppData/images/oblogo.png" height="48px" width="200px">
 					</a>
 				</div>
 			</div>
@@ -149,15 +145,14 @@ body {
 		<!-- Main Menu -->
 		<div class="side-menu-container">
 			<ul class="nav navbar-nav">
+			<li style="display: block;width:200px;"><a href="javascript:launchNewWindow('#')" style="color:white;">Manage Account</a></li>
 				<li style="display: block;width:200px;"><a href="javascript:launchNewWindow('dashboard.jsp')" style="color:white;">Dashboard</a></li>
-				<li style="display: block;width:200px;"><a href="javascript:launchNewWindow('manageAccount.jsp')" style="color:white;">Manage Account</a></li>
 				<li  id="dropdown" style="display: block;width:200px">
 				<a data-toggle="collapse" href="#dropdown-lvl1" style="color:white;"><i class="fa fa-puzzle-piece"></i> Manage Customer <span class="caret"></span></a>
 			    	<div id="dropdown-lvl1" class="panel-collapse collapse">
 						<div class="panel-body1">
 							<ul class="nav navbar-nav">							
 								<li style="display: block;width:200px"><a href="javascript:launchNewWindow('createUpdateCustomer.jsp')" style="color:white;" title="Create Update Customer">Create Update Customer</a></li>							
-								<li style="display: block;width:200px"><a href="javascript:launchNewWindow('viewCustomerRequest.jsp')" style="color:white;" title="View Customer Request">View Customer Request </a></li>
 								<li style="display: block;width:200px"><a href="javascript:launchNewWindow('viewAllCustomer.jsp')" style="color:white;" title="View All Customer">View All Customer</a></li>
 							</ul>
 						</div>
@@ -182,8 +177,7 @@ body {
 						<div class="panel-body1">
 							<ul class="nav navbar-nav">							
 								<li style="display: block;width:200px"><a href="javascript:launchNewWindow('applyForLoan.jsp')" style="color:white;" title="Create Update Customer">Apply For Loan</a></li>							
-								<li style="display: block;width:200px"><a href="javascript:launchNewWindow('viewLoanRequest.jsp')" style="color:white;" title="View Loan Request">View Loan Request</a></li>
-								<li style="display: block;width:200px"><a href="javascript:launchNewWindow('viewAllLoan.jsp')" style="color:white;" title="View All Loan">View All Loan</a></li>
+								
 							</ul>
 						</div>
 					</div>
@@ -200,7 +194,7 @@ body {
 	  <div class="cv">
 	   	<div class="inbox">
 	       <div class="inbox-sb">
-	       	<iframe id="mainPage" src="dashboard.jsp" height="750px" width="100%" title="Iframe" style="border: none"></iframe>
+	       	<iframe id="mainPage" src="dashboard.jsp" height="670px" width="100%" title="Iframe" style="border: none"></iframe>
 	       </div>
 	    </div>
 	  </div>

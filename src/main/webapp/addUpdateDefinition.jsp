@@ -46,30 +46,18 @@
 			document.getElementById("addDefinitionForm").submit();			
 		}
  }
-	setInterval(function(){ $(".alert").fadeOut(); }, 3000);
 </script>
 
 <body>
 	<%	
 	if (custId > 0) {
 	%>
-	<div>
+	<div class="well"><h4 style="color: #f14a46;">Add Update Definition</h4></div>
 	<%if(successMsg != null){%>
-		<div class="alert alert-success" style="width: 50%;margin-left: 25%;">
-		  <strong>Success!</strong> <%=successMsg %>
-		</div>
-	<%
-	} 
-	%>
-	
-	<%if(errorMsg != null){ %>
-		<div class="alert alert-danger" style="width: 50%;margin-left: 25%;">
-		  <strong>Error</strong> <%=errorMsg %>
-		</div>
-	<%
-	}
-	%>
-</div>
+    <div class="alert alert-success"><%=successMsg%></div>
+    <%}if(errorMsg != null){%>
+    <div class="alert alert-danger"><%=errorMsg%></div>
+    <%} %>
 	<form id="addDefinitionForm" name="addDefinitionForm" action="MSDefinitionController" method="post" >
 	<input type="hidden" name="defId" value="<%=msEntity!=null ? msEntity.getDefId()  : "0" %>">
 	<input type="hidden" name="docmd" value="<%=msEntity!=null? "updateDefinition" : "addNewDefinition" %>">
